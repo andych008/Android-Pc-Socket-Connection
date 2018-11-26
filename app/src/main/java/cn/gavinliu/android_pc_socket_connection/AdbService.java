@@ -143,6 +143,13 @@ public class AdbService extends Service {
                 try {
                     Log.i(TAG, "ServerThread: waiting to connect...");
                     mSocket = mServerSocket.accept();
+                } catch (SocketException e) {
+                    if (mRunning) {
+                        Log.e(TAG, "server SocketException", e);
+                    } else {
+                        Log.i(TAG, "Socket server closed");
+                        break;
+                    }
                 } catch (IOException e) {
                     Log.e(TAG, "Socket err", e);
                 }
@@ -184,9 +191,9 @@ public class AdbService extends Service {
                         }
                     } catch (SocketException e) {
                         if (mRunning) {
-                            Log.e(TAG, "SocketException", e);
+                            Log.e(TAG, "client SocketException", e);
                         } else {
-                            Log.i(TAG, "Socket closed");
+                            Log.i(TAG, "Socket client closed");
                             break;
                         }
                     } catch (IOException e) {
