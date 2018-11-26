@@ -27,7 +27,7 @@ public class ClientApp {
             Thread.sleep(500);
             // 发送广播，启动socket服务
             Runtime.getRuntime().exec("adb shell am broadcast -a NotifyServiceStart");
-            Thread.sleep(500);
+            Thread.sleep(1500);
         } catch (Exception e) {
             e.printStackTrace();
         }
