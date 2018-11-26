@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="cn.gavinliu.android_pc_socket_connection">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,14 +10,24 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".AdbService" />
+        <receiver android:name=".AdbServiceBroadcastReceiver">
+            <intent-filter>
+                <action android:name="NotifyServiceStart" />
+                <action android:name="NotifyServiceStop" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
